@@ -1,0 +1,22 @@
+.header {
+  background-image: url("@/assets/img/header_bg.avif");
+  background-size: cover;
+  width: 100%;
+  height: var(--header-height);
+
+  justify-content: center;
+  align-items: center;
+
+  display: flex;
+
+  /* clip-path: polygon(50% 0%, 100% 0, 100% 70%, 0 100%, 0 0); */
+  /* transform: skewY(-2.5deg); */
+  /* border-bottom: 0.2em solid #fff; */
+}
+
+.header h1 {
+  color: white;
+  font-size: 32px;
+  text-shadow: 0.022em 0.022em 0.022em #111;
+  margin: 10px;
+}

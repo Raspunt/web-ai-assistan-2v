@@ -1,0 +1,25 @@
+FROM golang:1.22.1-bookworm
+
+WORKDIR /app
+
+RUN apt update
+RUN apt install cmake wget git gcc g++ -y 
+
+ENV OLLAMA_HOST=0.0.0.0
+ENV OLLAMA_ORIGINS=http://192.168.1.11,http://192.168.1.22,http://172.18.0.1
+
+COPY ./ollama .
+
+RUN find . -name "CMakeCache.txt" -type f -delete
+
+ENV TZ=Asia/Karachi
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+
+
+RUN go generate ./...
+RUN go build .
+
+CMD [ "go","run","main.go","serve" ]
+
+

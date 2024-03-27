@@ -1,0 +1,13 @@
+body,
+html {
+  background-color: rgb(40, 40, 40);
+  height: 100%;
+}
+
+:root {
+  --input-form-width: 70%;
+}
+
+#app {
+  height: 100%;
+}

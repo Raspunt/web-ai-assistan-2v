@@ -1,0 +1,47 @@
+version: '3.7'
+services:
+  web-ai-assistan:
+    container_name: web-ai-assistan
+    build:
+      context: .
+      dockerfile: Dockerfile-vue
+    volumes:
+      - './fronted-vue:/app'
+      - '/app/node_modules'
+    ports:
+      - '8080:8080'
+    networks:
+      - ollama-docker
+
+  ollama:
+    image: debian:bookworm
+
+    build:
+      context: .
+      dockerfile: Dockerfile-ollama
+
+    ports:
+      - 11434:11434
+    volumes:
+      - ./ollama-data/:/root/ollama
+    container_name: ollama
+    pull_policy: always
+    tty: true
+    restart: no
+    networks:
+      - ollama-docker
+
+  postgres:
+    image: postgres:14-alpine
+    ports:
+      - 5432:5432
+    volumes:
+      - ./dbServer/db-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=qaqsqdqe
+      - POSTGRES_USER=kokos
+      - POSTGRES_DB=ollamaDB
+
+networks:
+  ollama-docker:
+    external: false

@@ -1,0 +1,22 @@
+.main_container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.warning-message{
+    display: flex;
+    justify-content: center;
+    
+}
+
+.missing-models-box {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.missing-models-box table {
+  width: 40%;
+}
+
